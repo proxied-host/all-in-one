@@ -1,9 +1,9 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG node_verion
+ARG verion
 
-RUN echo aaaeeeooois "$node_verion"
+RUN echo aaaeeeooois "$version"
 
 RUN apt update && \
     apt install -y curl software-properties-common locales git && \
