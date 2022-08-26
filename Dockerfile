@@ -14,7 +14,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN curl -sL $X_URL | bash - && \
     apt -y install nodejs ffmpeg make build-essential && \
-    npm i -g npm@latest yarn@latest pm2@latest typescript@latest
+    npm i -g npm@latest yarn pm2 typescript
 
 USER container
 ENV USER container
