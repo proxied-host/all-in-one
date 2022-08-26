@@ -30,7 +30,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          buildArgs: ['NODE_VERSION=${{ matrix.node_version }}']
+          buildArgs: NODE_VERSION=${{ matrix.node_version }}
           context: .
           platforms: [linux/amd64, linux/arm64]
           push: true
