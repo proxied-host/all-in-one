@@ -1,9 +1,8 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG verion
-
-RUN echo aaaeeeooois "$version"
+ARG NODE_VERSION
+ARG X_URL=https://deb.nodesource.com/setup_"$NODE_VERSION".x
 
 RUN apt update && \
     apt install -y curl software-properties-common locales git && \
