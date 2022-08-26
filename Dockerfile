@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG NODE_VERSION
 
-RUN echo aaaeeeooo is $NODE_VERSION
+RUN echo aaaeeeooois "$NODE_VERSION"
 
 RUN apt update && \
     apt install -y curl software-properties-common locales git && \
