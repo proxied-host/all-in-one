@@ -2,7 +2,10 @@ FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG NODE_VERSION
+ENV NODE_VERSION=$NODE_VERSION
 ARG X_URL="https://deb.nodesource.com/setup_"$NODE_VERSION".x"
+
+RUN echo aaaeeeooo is $NODE_VERSION
 
 RUN apt update && \
     apt install -y curl software-properties-common locales git && \
