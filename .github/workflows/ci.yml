@@ -36,6 +36,6 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: djoh/all-in-one:${{ matrix.node_version }}
-          cache-from: type=registry,ref=djoh/all-in-one:${{ matrix.node_version }}
+          tags: djoh/all-in-one:node${{ matrix.node_version }}
+          cache-from: type=registry,ref=djoh/all-in-one:node${{ matrix.node_version }}
           cache-to: type=inline
