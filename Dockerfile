@@ -14,10 +14,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN curl -sL $X_URL | bash - && \
     apt install -y nodejs g++ ffmpeg
-RUN npm i -g npm@latest pm2 typescript
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt install -y yarn
+RUN npm i -g npm@latest yarn pm2 typescript
 
 USER container
 ENV USER container
