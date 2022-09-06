@@ -14,7 +14,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN curl -sL $X_URL | bash - && \
     apt install -y nodejs g++ ffmpeg
-RUN npm i -g npm@latest pm2 typescript
+RUN npm i -g npm@latest yarn pm2 typescript
 
 USER container
 ENV USER container
