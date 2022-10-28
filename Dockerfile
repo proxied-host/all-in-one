@@ -13,7 +13,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN curl -sL $X_URL | bash - && \
-    apt install -y nodejs g++ ffmpeg
+    apt install -y nodejs g++ build-essential ffmpeg
 RUN npm i -g npm@latest yarn pm2 typescript
 
 USER container
