@@ -10,4 +10,27 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 cd /home/container
 
+if  [ ! -f ".noyarn" ] && [[ ! -d ".yarn" || "$(which yarn)" =~ "/usr/bin/yarn" ]]
+then
+    read -p "Yarn is not installed. Do you want to install it? (y/n): " SHOULD_INSTALL
+    
+    if [[ "$(echo $SHOULD_INSTALL)" = "y" || "$(echo $SHOULD_INSTALL)" = "Y" ]]
+    then
+        echo "Installing Yarn..."
+        touch .bashrc
+        curl -o- -L https://yarnpkg.com/install.sh | bash
+        sleep 1
+        source .bashrc
+        if [[ "$(which yarn)" =~ "/usr/bin/yarn" ]]
+        then
+            echo "Wrong yarn installation path detected. Restarting the server in 3 seconds." 
+            sleep 3
+            exit
+        fi
+    else
+        echo "Okay, if you want to install yarn later - delete '.noyarn' file."
+        touch .noyarn
+    fi
+fi
+
 ${MODIFIED_STARTUP}
