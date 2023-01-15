@@ -2,14 +2,15 @@
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "version": "PTDL_v2",
-        "update_url": "https:\/\/raw.githubusercontent.com\/djohs-stuff\/all-in-one\/master\/egg-all-in-one.json"
+        "update_url": ""
     },
     "exported_at": "2022-08-27T01:56:23+03:00",
     "name": "All In One",
     "author": "me@djoh.xyz",
-    "description": "Node.JS 18\r\nNode.JS 16\r\nNode.JS 14\r\nNode.JS 12\r\n& more coming soon\u2122",
+    "description": "Node.JS 19\r\nNode.JS 18\r\nNode.JS 16\r\nNode.JS 14\r\nNode.JS 12\r\n& more coming soon\u2122",
     "features": null,
     "docker_images": {
+        "Node.JS 19": "djoh\/all-in-one:node19",
         "Node.JS 18": "djoh\/all-in-one:node18",
         "Node.JS 16": "djoh\/all-in-one:node16",
         "Node.JS 14": "djoh\/all-in-one:node14",
