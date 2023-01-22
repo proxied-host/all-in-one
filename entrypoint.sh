@@ -1,11 +1,11 @@
 sleep 1
 
-clear
-
 NODE_VERSION=$(node -v)
 echo "Node.JS version: $NODE_VERSION"
 
 cd /home/container
+
+export PORT=$SERVER_PORT
 
 if [ ! -f ".noyarn" ] && [[ ! -d ".yarn" || "$(which yarn)" =~ "/usr/bin/yarn" ]]
 then
