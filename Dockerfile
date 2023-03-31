@@ -5,7 +5,7 @@ ARG NODE_VERSION
 ARG X_URL=https://deb.nodesource.com/setup_"$NODE_VERSION".x
 
 RUN apt update && \
-    apt install -y curl software-properties-common locales git && \
+    apt install -y curl software-properties-common default-jre locales git && \
     useradd -d /home/container -m container
 
 RUN locale-gen en_US.UTF-8
