@@ -44,7 +44,7 @@ jobs:
         with:
           build-args: NODE_VERSION=${{ matrix.node_version }}
           context: .
-          file: NodeJS.Dockerfile
+          file: nodejs.Dockerfile
           platforms: ${{ matrix.arch }}
           push: true
           tags: djoh/all-in-one:node${{ matrix.node_version }}
@@ -95,7 +95,7 @@ jobs:
         with:
           build-args: PYTHON_VERSION=${{ matrix.python_version }}
           context: .
-          file: Python.Dockerfile
+          file: python.Dockerfile
           platforms: ${{ matrix.arch }}
           push: true
           tags: "djoh/all-in-one:python${{ steps.extract.outputs.result }}"
