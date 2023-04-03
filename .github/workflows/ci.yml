@@ -79,7 +79,7 @@ jobs:
         run: |
           str="${{ matrix.python_version }}"
           IFS='.' read -ra arr <<< "$str"
-          result="${arr[0]}:${arr[1]}"
+          result="${arr[0]}.${arr[1]}"
           echo "::set-output name=result::$result"
 
       - name: Format arch name
