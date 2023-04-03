@@ -26,8 +26,8 @@ RUN ./configure --enable-optimizations && \
     make altinstall
 
 # update alternatives
-RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION 1 && \
-    update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION
+RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python${PYTHON_VERSION:0:3} 1 && \
+    update-alternatives --set python /usr/local/bin/python${PYTHON_VERSION:0:3}
 
 # install pip
 RUN python -m ensurepip --upgrade && \
