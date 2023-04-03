@@ -40,8 +40,8 @@ jobs:
           platforms: ${{ matrix.arch }}
           push: true
           tags: djoh/all-in-one:node${{ matrix.node_version }}
-          cache-from: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}-${{ matrix.arch }}
-          cache-to: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}-${{ matrix.arch }},mode=max
+          cache-from: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}_${{ matrix.arch }}
+          cache-to: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}_${{ matrix.arch }},mode=max
   python:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
@@ -70,8 +70,8 @@ jobs:
         id: extract
         run: |
           str="${{ matrix.python_version }}"
-          arr=(${str//./ })
-          result="${arr[@]:0:2}"
+          IFS='.' read -ra arr <<< "$str"
+          result="${arr[0]}:${arr[1]}"
           echo "::set-output name=result::$result"
 
       - name: Build and push
@@ -83,5 +83,5 @@ jobs:
           platforms: ${{ matrix.arch }}
           push: true
           tags: "djoh/all-in-one:python${{ steps.extract.outputs.result }}"
-          cache-from: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}-${{ matrix.arch }}
-          cache-to: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}-${{ matrix.arch }},mode=max
+          cache-from: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}_${{ matrix.arch }}
+          cache-to: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}_${{ matrix.arch }},mode=max
