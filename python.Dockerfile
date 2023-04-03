@@ -25,13 +25,13 @@ RUN ./configure --enable-optimizations && \
     make -j8 && \
     make altinstall
 
-# install pip
-RUN python -m ensurepip --upgrade && \
-    python -m pip install --upgrade pip
-
 # update alternatives
 RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION 1 && \
     update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION
+
+# install pip
+RUN python -m ensurepip --upgrade && \
+    python -m pip install --upgrade pip
 
 ENV USER container
 ENV USER container
