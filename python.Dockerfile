@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG PYTHON_VERSION
+ARG PYTHON_VERSION_SHORT
 ARG DOWNLOAD_URL=https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
 
 RUN apt update && \
@@ -26,8 +27,8 @@ RUN ./configure --enable-optimizations && \
     make altinstall
 
 # update alternatives
-RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python${PYTHON_VERSION:0:3} 1 && \
-    update-alternatives --set python /usr/local/bin/python${PYTHON_VERSION:0:3}
+RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION_SHORT 1 && \
+    update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION_SHORT
 
 # install pip
 RUN python -m ensurepip --upgrade && \
