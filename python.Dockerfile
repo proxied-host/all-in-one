@@ -15,16 +15,15 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-# install python
+# download and install python
+WORKDIR /tmp
 RUN curl -sL $DOWNLOAD_URL && \
-    tar -xf Python-$PYTHON_VERSION.tgz && \
-    cd Python-$PYTHON_VERSION && \
-    ./configure --enable-optimizations && \
+    tar -xf Python-$PYTHON_VERSION.tgz
+
+WORKDIR /tmp/Python-$PYTHON_VERSION
+RUN ./configure --enable-optimizations && \
     make -j8 && \
-    make altinstall && \
-    cd .. && \
-    rm -rf Python-$PYTHON_VERSION && \
-    rm -rf Python-$PYTHON_VERSION.tgz
+    make altinstall
 
 # install pip
 RUN python -m ensurepip --upgrade && \
