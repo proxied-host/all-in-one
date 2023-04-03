@@ -93,9 +93,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          build-args: |
-            - PYTHON_VERSION=${{ matrix.python_version }}
-            - PYTHON_VERSION_SHORT=${{ steps.extract.outputs.result }}
+          build-args: PYTHON_VERSION=${{ matrix.python_version }},PYTHON_VERSION_SHORT=${{ steps.extract.outputs.result }}
           context: .
           file: python.Dockerfile
           platforms: ${{ matrix.arch }}
