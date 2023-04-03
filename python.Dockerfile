@@ -17,7 +17,7 @@ ENV LC_ALL en_US.UTF-8
 
 # download and install python
 WORKDIR /tmp
-RUN curl -sL $DOWNLOAD_URL && \
+RUN curl -sLO $DOWNLOAD_URL && \
     tar -xf Python-$PYTHON_VERSION.tgz
 
 WORKDIR /tmp/Python-$PYTHON_VERSION
