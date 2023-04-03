@@ -9,17 +9,16 @@ export PORT=$SERVER_PORT
 
 if [ ! -f ".noyarn" ] && [[ ! -d ".yarn" || "$(which yarn)" =~ "/usr/bin/yarn" ]]
 then
-    echo "Yarn is not installed. Do you want to install it? (y/n):"
-    read SHOULD_INSTALL
-    
-    if [[ $SHOULD_INSTALL = "Y" || $SHOULD_INSTALL = "y" ]]
+    read -p "Yarn is not installed. Do you want to install it? (y/n): " SHOULD_INSTALL
+
+    if [[ $SHOULD_INSTALL =~ ^[Yy]$ ]]
     then
         echo "Installing Yarn..."
-        touch .bashrc
         curl -o- -L https://yarnpkg.com/install.sh | bash
         sleep 1
-        source .bashrc
-        if [[ "$(which yarn)" =~ "/usr/bin/yarn" ]]
+        source ~/.bashrc
+
+        if [[ $(which yarn) == "/usr/bin/yarn" ]]
         then
             echo "Wrong yarn installation path detected. Restarting the server in 3 seconds." 
             sleep 3
