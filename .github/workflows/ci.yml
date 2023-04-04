@@ -14,7 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         node_version: [12, 14, 16, 18, 19]
-        arch: [linux/amd64, linux/arm64]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,25 +30,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Format arch name
-        id: format
-        run: |
-          str="${{ matrix.arch }}"
-          IFS='/' read -ra arr <<< "$str"
-          result="${arr[0]}-${arr[1]}"
-          echo "::set-output name=result::$result"
-
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          build-args: NODE_VERSION=${{ matrix.node_version }}
+          build-args: linux/amd64, linux/arm64
           context: .
           file: nodejs.Dockerfile
           platforms: ${{ matrix.arch }}
           push: true
           tags: djoh/all-in-one:node${{ matrix.node_version }}
-          cache-from: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}_${{ steps.format.outputs.result }}
-          cache-to: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}_${{ steps.format.outputs.result }},mode=max
+          cache-from: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}
+          cache-to: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }},mode=max
   python:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
@@ -82,14 +73,6 @@ jobs:
           result="${arr[0]}.${arr[1]}"
           echo "::set-output name=result::$result"
 
-      - name: Format arch name
-        id: format
-        run: |
-          str="${{ matrix.arch }}"
-          IFS='/' read -ra arr <<< "$str"
-          result="${arr[0]}-${arr[1]}"
-          echo "::set-output name=result::$result"
-
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
@@ -98,8 +81,8 @@ jobs:
             PYTHON_VERSION_SHORT=${{ steps.extract.outputs.result }}
           context: .
           file: python.Dockerfile
-          platforms: ${{ matrix.arch }}
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: "djoh/all-in-one:python${{ steps.extract.outputs.result }}"
-          cache-from: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}_${{ steps.format.outputs.result }}
-          cache-to: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}_${{ steps.format.outputs.result }},mode=max
+          cache-from: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}
+          cache-to: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }},mode=max
