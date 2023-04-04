@@ -33,10 +33,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          build-args: linux/amd64, linux/arm64
+          build-args: NODE_VERSION=${{ matrix.node_version }}
           context: .
           file: nodejs.Dockerfile
-          platforms: ${{ matrix.arch }}
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: djoh/all-in-one:node${{ matrix.node_version }}
           cache-from: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}
