@@ -9,7 +9,8 @@ export PORT=$SERVER_PORT
 
 if [ ! -f ".noyarn" ] && [[ ! -d ".yarn" || "$(which yarn)" =~ "/usr/bin/yarn" ]]
 then
-    read -p "Yarn is not installed. Do you want to install it? (y/n): " SHOULD_INSTALL
+    echo "Yarn is not installed. Do you want to install it? (y/n):"
+    read SHOULD_INSTALL
 
     if [[ $SHOULD_INSTALL =~ ^[Yy]$ ]]
     then
