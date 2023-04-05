@@ -4,12 +4,17 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'nodejs.Dockerfile'
+      - 'nodejs.entrypoint.sh'
+      - 'python.Dockerfile'
+      - 'python.entrypoint.sh'
   workflow_dispatch:
 
 jobs:
   nodejs:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
+    if: ${{ any(contains(github.event.head_commit.modified, item) for item in ['nodejs.Dockerfile', 'nodejs.entrypoint.sh']) }}
     strategy:
       fail-fast: false
       matrix:
@@ -41,9 +46,10 @@ jobs:
           tags: djoh/all-in-one:node${{ matrix.node_version }}
           cache-from: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }}
           cache-to: type=registry,ref=djoh/all-in-one:buildcache_node${{ matrix.node_version }},mode=max
+
   python:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
+    if: ${{ any(contains(github.event.head_commit.modified, item) for item in ['python.Dockerfile', 'python.entrypoint.sh']) }}
     strategy:
       fail-fast: false
       matrix:
