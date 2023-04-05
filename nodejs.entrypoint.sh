@@ -36,6 +36,11 @@ then
         echo "Okay, if you want to install yarn later - delete '.noyarn' file."
         touch .noyarn
     fi
+else
+    if [[ -f ".bashrc" ]]
+    then
+        source ~/.bashrc
+    fi
 fi
 
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
