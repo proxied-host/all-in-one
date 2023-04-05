@@ -14,6 +14,12 @@ then
 
     if [[ $SHOULD_INSTALL =~ ^[Yy]$ ]]
     then
+        if [[ ! -f ".bashrc" ]]
+        then
+            echo "Creating .bashrc file..."
+            touch .bashrc
+        fi
+
         echo "Installing Yarn..."
         curl -o- -L https://yarnpkg.com/install.sh | bash
         sleep 1
