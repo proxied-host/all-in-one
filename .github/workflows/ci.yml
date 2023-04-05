@@ -14,7 +14,7 @@ on:
 jobs:
   nodejs:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.head_commit.modified, 'nodejs.*') }}
+    if: ${{ contains(github.event.head_commit.modified, 'nodejs.Dockerfile') || contains(github.event.head_commit.modified, 'nodejs.entrypoint.sh') }}
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +49,7 @@ jobs:
 
   python:
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.head_commit.modified, 'python.*') }}
+    if: ${{ contains(github.event.head_commit.modified, 'python.Dockerfile') || contains(github.event.head_commit.modified, 'python.entrypoint.sh }}
     strategy:
       fail-fast: false
       matrix:
