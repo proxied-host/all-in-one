@@ -22,6 +22,7 @@ then
 
         echo "Installing Yarn..."
         curl -o- -L https://yarnpkg.com/install.sh | bash
+
         sleep 1
         source ~/.bashrc
 
