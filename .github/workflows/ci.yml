@@ -14,7 +14,7 @@ on:
 jobs:
   nodejs:
     runs-on: ubuntu-latest
-    if: ${{ any(contains(github.event.head_commit.modified, item) for item in ['nodejs.Dockerfile', 'nodejs.entrypoint.sh']) }}
+    if: ${{ contains(github.event.head_commit.modified, 'nodejs.*') }}
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +49,7 @@ jobs:
 
   python:
     runs-on: ubuntu-latest
-    if: ${{ any(contains(github.event.head_commit.modified, item) for item in ['python.Dockerfile', 'python.entrypoint.sh']) }}
+    if: ${{ contains(github.event.head_commit.modified, 'python.*') }}
     strategy:
       fail-fast: false
       matrix:
