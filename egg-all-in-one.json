@@ -4,17 +4,21 @@
         "version": "PTDL_v2",
         "update_url": ""
     },
-    "exported_at": "2022-08-27T01:56:23+03:00",
+    "exported_at": "2023-06-25T18:18:58+00:00",
     "name": "All In One",
     "author": "me@djoh.xyz",
-    "description": "Node.JS 19\r\nNode.JS 18\r\nNode.JS 16\r\nNode.JS 14\r\nNode.JS 12\r\n& more coming soon\u2122",
+    "description": "Node.JS: 19, 18, 16, 14, 12\r\nPython: 3.11, 3.10, 3.9, 3.8\r\n& more coming soon\u2122",
     "features": null,
     "docker_images": {
         "Node.JS 19": "djoh\/all-in-one:node19",
         "Node.JS 18": "djoh\/all-in-one:node18",
         "Node.JS 16": "djoh\/all-in-one:node16",
         "Node.JS 14": "djoh\/all-in-one:node14",
-        "Node.JS 12": "djoh\/all-in-one:node12"
+        "Node.JS 12": "djoh\/all-in-one:node12",
+        "Python 3.11": "djoh\/all-in-one:python3.11",
+        "Python 3.10": "djoh\/all-in-one:python3.10",
+        "Python 3.9": "djoh\/all-in-one:python3.9",
+        "Python 3.8": "djoh\/all-in-one:python3.8"
     },
     "file_denylist": [],
     "startup": "{{STARTUP_CMD}}",
