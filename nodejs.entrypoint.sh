@@ -7,7 +7,7 @@ cd /home/container
 
 export PORT=$SERVER_PORT
 
-if [ ! -f ".noyarn" ] && [[ ! -d ".yarn/bin" || "$(which yarn)" =~ "/usr/bin/yarn" ]]
+if [ ! -f ".noyarn" ] && [[ ! -d ".yarn" || "$(which yarn)" =~ "/usr/bin/yarn" ]]
 then
     echo "Yarn is not installed. Do you want to install it? (y/n):"
     read SHOULD_INSTALL
