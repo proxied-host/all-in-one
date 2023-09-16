@@ -23,6 +23,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     apt update && \
     apt install yarn
 
+# Install bun
+RUN curl -fsSL https://bun.sh/install | bash
+
 USER container
 ENV USER container
 ENV HOME /home/container
