@@ -25,7 +25,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     apt install yarn
 
 # Install bun
-RUN curl -fL https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-linux-x64-baseline.zip && \
+RUN curl -fLO https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-linux-x64-baseline.zip && \
     unzip bun-linux-x64-baseline.zip && \
     mv bun-linux-x64-baseline/bun /usr/local/bin/bun && \
     rm bun-linux-x64-baseline.zip
