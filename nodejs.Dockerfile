@@ -3,6 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG NODE_VERSION
 ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
+ARG BUN_VERSION=v1.0.3
 
 RUN apt update && \
     apt install -y curl software-properties-common default-jre locales git unzip && \
@@ -24,9 +25,10 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     apt install yarn
 
 # Install bun
-RUN curl -fsSL https://bun.sh/install | bash && \
-    mv ~/.bun/bin/bun /usr/bin/bun && \
-    mv ~/.bun/bin/bunx /usr/bin/bunx
+RUN curl -fL https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-linux-x64-baseline.zip && \
+    unzip bun-linux-x64-baseline.zip && \
+    mv bun-linux-x64-baseline/bun /usr/local/bin/bun && \
+    rm bun-linux-x64-baseline.zip
 
 USER container
 ENV USER container
