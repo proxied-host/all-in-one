@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 ARG NODE_VERSION
 ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
-ARG BUN_VERSION=v1.0.9
+ARG BUN_VERSION=v1.0.10
 
 RUN apt update && \
     apt install -y curl software-properties-common default-jre locales git unzip && \
