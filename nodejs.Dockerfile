@@ -6,7 +6,7 @@ ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
 ARG BUN_VERSION=v1.0.11
 
 RUN apt update && \
-    apt install -y curl software-properties-common default-jre locales git unzip && \
+    apt install -y curl software-properties-common default-jre locales git unzip libnss3 && \
     useradd -d /home/container -m container
 
 RUN locale-gen en_US.UTF-8
