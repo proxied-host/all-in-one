@@ -31,7 +31,7 @@ RUN curl -fLO https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION
     rm bun-linux-x64-baseline.zip
 
 # Lib dependencies for puppeteer
-RUN apt install -y libnss3 libxdamage1
+RUN apt install -y libxdamage1 libgbm1
 
 USER container
 ENV USER container
