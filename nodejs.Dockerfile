@@ -15,7 +15,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN curl -sL $X_URL | bash - && \
     apt install -y nodejs g++ build-essential ffmpeg
-RUN npm i -g pm2
+RUN npm i -g pm2 pnpm
 
 # Install yarn
 RUN apt remove cmdtest
