@@ -6,7 +6,7 @@ ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
 ARG BUN_VERSION=v1.0.15
 
 RUN apt update && \
-    apt install -y curl software-properties-common default-jre locales git unzip libnss3 && \
+    apt install -y curl software-properties-common default-jre locales git unzip && \
     useradd -d /home/container -m container
 
 RUN locale-gen en_US.UTF-8
@@ -29,6 +29,9 @@ RUN curl -fLO https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION
     unzip bun-linux-x64-baseline.zip && \
     mv bun-linux-x64-baseline/bun /usr/local/bin/bun && \
     rm bun-linux-x64-baseline.zip
+
+# Lib dependencies for puppeteer
+RUN apt install -y libnss3 libxdamage1
 
 USER container
 ENV USER container
