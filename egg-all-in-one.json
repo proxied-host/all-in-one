@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": ""
     },
-    "exported_at": "2023-07-10T18:17:17+00:00",
+    "exported_at": "2023-12-16T21:22:12+00:00",
     "name": "All In One",
     "author": "me@djoh.xyz",
     "description": "Node.JS: 20, 19, 18, 16, 14, 12\r\nPython: 3.11, 3.10, 3.9, 3.8\r\n& more coming soon\u2122",
@@ -16,6 +16,7 @@
         "Node.JS 16": "djoh\/all-in-one:node16",
         "Node.JS 14": "djoh\/all-in-one:node14",
         "Node.JS 12": "djoh\/all-in-one:node12",
+        "Python 3.12": "djoh\/all-in-one:python3.12",
         "Python 3.11": "djoh\/all-in-one:python3.11",
         "Python 3.10": "djoh\/all-in-one:python3.10",
         "Python 3.9": "djoh\/all-in-one:python3.9",
