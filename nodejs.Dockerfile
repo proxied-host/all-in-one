@@ -1,6 +1,7 @@
 FROM ubuntu:20.04@sha256:f5c3e53367f142fab0b49908550bdcdc4fb619d2f61ec1dfa60d26e0d59ac9e7
 ARG DEBIAN_FRONTEND=noninteractive
 
+ARG TARGETARCH
 ARG NODE_VERSION
 ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
 ARG BUN_VERSION=v1.0.20
