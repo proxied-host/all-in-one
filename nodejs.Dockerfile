@@ -29,10 +29,10 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 RUN case ${TARGETARCH} in 'amd64') TARGET=linux-x64-baseline;; 'arm64') TARGET=linux-aarch64;; esac && \
     echo "TARGETARCH=${TARGETARCH}" && \
     echo "TARGET=$TARGET" && \
-    curl -fL -o bun-linux.zip https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-$TARGET.zip && \
-    unzip bun-linux.zip && \
-    mv bun-linux/bun /usr/local/bin/bun && \
-    rm bun-linux.zip
+    curl -fL -o bun.zip https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-$TARGET.zip && \
+    unzip bun.zip && \
+    mv bun-$TARGET/bun /usr/local/bin/bun && \
+    rm bun.zip
 
 # Lib dependencies for puppeteer
 RUN apt install -y libxdamage1 libgbm1
