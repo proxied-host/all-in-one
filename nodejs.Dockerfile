@@ -29,7 +29,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 RUN case ${TARGETARCH} in 'amd64') TARGET=linux-x64-baseline;; 'arm64') TARGET=linux-aarch64;; esac && \
     echo "TARGETARCH=${TARGETARCH}" && \
     echo "TARGET=$TARGET" && \
-    curl -fLo bun-linux.zip https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-$TARGET.zip && \
+    curl -fL -o bun-linux.zip https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-$TARGET.zip && \
     unzip bun-linux.zip && \
     mv bun-linux/bun /usr/local/bin/bun && \
     rm bun-linux.zip
