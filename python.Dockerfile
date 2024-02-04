@@ -10,7 +10,7 @@ RUN apt update && \
     useradd -d /home/container -m container
 
 # additional dependencies for python
-RUN apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
+RUN apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev
 
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -23,12 +23,8 @@ RUN curl -sLO $DOWNLOAD_URL && \
 
 WORKDIR /tmp/Python-$PYTHON_VERSION
 RUN ./configure --enable-optimizations && \
-    make -j8 && \
-    make altinstall
-
-# update alternatives
-RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION_SHORT 1 && \
-    update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION_SHORT
+    make PROFILE_TASK="-m test.regrtest --pgo -j8" -j8 && \
+    make install
 
 # install pip
 RUN python -m ensurepip --upgrade && \
