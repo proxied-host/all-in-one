@@ -22,9 +22,13 @@ RUN curl -sLO $DOWNLOAD_URL && \
     tar -xf Python-$PYTHON_VERSION.tgz
 
 WORKDIR /tmp/Python-$PYTHON_VERSION
-RUN ./configure --enable-optimizations && \
+RUN ./configure --enable-optimizations --enable-loadable-sqlite-extensions && \
     make PROFILE_TASK="-m test.regrtest --pgo -j8" -j8 && \
-    make install
+    make altinstall
+
+# update alternatives
+RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION_SHORT 1 && \
+    update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION_SHORT
 
 # install pip
 RUN python -m ensurepip --upgrade && \
