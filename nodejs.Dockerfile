@@ -32,7 +32,7 @@ RUN case ${TARGETARCH} in 'amd64') TARGET=linux-x64-baseline;; 'arm64') TARGET=l
     curl -fL -o bun.zip https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-$TARGET.zip && \
     unzip bun.zip && \
     mv bun-$TARGET/bun /usr/local/bin/bun && \
-    rm bun.zip
+    rm bun.zip bun-$TARGET
 
 # Lib dependencies for puppeteer
 RUN apt install -y libxdamage1 libgbm1
