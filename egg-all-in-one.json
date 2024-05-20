@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": ""
     },
-    "exported_at": "2023-12-16T21:22:12+00:00",
+    "exported_at": "2024-05-20T13:12:32+00:00",
     "name": "All In One",
-    "author": "me@djoh.xyz",
-    "description": "Node.JS: 20, 19, 18, 16, 14, 12\r\nPython: 3.11, 3.10, 3.9, 3.8\r\n& more coming soon\u2122",
+    "author": "djoh@proxied.host",
+    "description": "Node.JS: 20, 19, 18, 16, 14, 12\r\nPython: 3.12, 3.11, 3.10, 3.9, 3.8\r\n& more coming soon\u2122",
     "features": null,
     "docker_images": {
         "Node.JS 20": "djoh\/all-in-one:node20",
