@@ -1,6 +1,6 @@
 ARG JAVA_VERSION
 
-FROM openjdk:${JAVA_VERSION}
+FROM openjdk:${JAVA_VERSION}-bullseye
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
