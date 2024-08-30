@@ -27,13 +27,17 @@ RUN ./configure --enable-optimizations --enable-loadable-sqlite-extensions && \
     make PROFILE_TASK="-m test.regrtest --pgo -j8" -j8 && \
     make altinstall
 
-# update alternatives
+# update python alternatives
 RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION_SHORT 1 && \
     update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION_SHORT
 
 # install pip
 RUN python -m ensurepip --upgrade && \
     python -m pip install --upgrade pip
+
+# update pip alternatives
+RUN update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip$PYTHON_VERSION_SHORT 1 && \
+    update-alternatives --set pip /usr/local/bin/pip$PYTHON_VERSION_SHORT
 
 ENV USER container
 ENV USER container
