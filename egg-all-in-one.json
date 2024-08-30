@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": ""
     },
-    "exported_at": "2024-08-01T00:37:42+00:00",
+    "exported_at": "2024-08-30T14:49:41+00:00",
     "name": "All In One",
     "author": "admin@proxied.host",
-    "description": "Node.JS: 22, 20, 19, 18, 16, 14, 12\r\nPython: 3.12, 3.11, 3.10, 3.9, 3.8\r\n& more coming soon\u2122",
+    "description": "Node.JS: 22, 20, 19, 18, 16, 14, 12\r\nPython: 3.12, 3.11, 3.10, 3.9, 3.8\r\nJava: 24, 23, 22, 21, 17, 11\r\n& more coming soon\u2122",
     "features": null,
     "docker_images": {
         "Node.JS 22": "djoh\/all-in-one:node22",
@@ -22,7 +22,13 @@
         "Python 3.11": "djoh\/all-in-one:python3.11",
         "Python 3.10": "djoh\/all-in-one:python3.10",
         "Python 3.9": "djoh\/all-in-one:python3.9",
-        "Python 3.8": "djoh\/all-in-one:python3.8"
+        "Python 3.8": "djoh\/all-in-one:python3.8",
+        "Java 24": "djoh\/all-in-one:java24",
+        "Java 23": "djoh\/all-in-one:java23",
+        "Java 22": "djoh\/all-in-one:java22",
+        "Java 21": "djoh\/all-in-one:java21",
+        "Java 17": "djoh\/all-in-one:java17",
+        "Java 11": "djoh\/all-in-one:java11"
     },
     "file_denylist": [],
     "startup": "{{STARTUP_CMD}}",
