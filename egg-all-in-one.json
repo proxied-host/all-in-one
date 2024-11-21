@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": ""
     },
-    "exported_at": "2024-08-30T14:54:42+00:00",
+    "exported_at": "2024-11-21T15:46:48+00:00",
     "name": "All In One",
     "author": "admin@proxied.host",
-    "description": "Node.JS: 22, 20, 19, 18, 16, 14, 12\r\nPython: 3.12, 3.11, 3.10, 3.9, 3.8\r\nJava: 24, 23, 22, 21, 17, 11\r\n& more coming soon\u2122",
+    "description": "Node.JS: 22, 20, 19, 18, 16, 14, 12\r\nPython: 3.13, 3.12, 3.11, 3.10, 3.9, 3.8\r\nJava: 24, 23, 22, 21, 17, 11\r\n& more coming soon\u2122",
     "features": null,
     "docker_images": {
         "Node.JS 22": "djoh\/all-in-one:node22",
@@ -18,6 +18,7 @@
         "Node.JS 14": "djoh\/all-in-one:node14",
         "Node.JS 12": "djoh\/all-in-one:node12",
         "==DO NOT SELECT==": "null",
+        "Python 3.13": "djoh\/all-in-one:python3.13",
         "Python 3.12": "djoh\/all-in-one:python3.12",
         "Python 3.11": "djoh\/all-in-one:python3.11",
         "Python 3.10": "djoh\/all-in-one:python3.10",
