@@ -5,6 +5,7 @@ on:
     branches:
       - master
     paths:
+      - '**/ci-java.yml'
       - 'java.Dockerfile'
       - 'java.entrypoint.sh'
   workflow_dispatch:
