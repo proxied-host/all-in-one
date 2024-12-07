@@ -5,6 +5,7 @@ on:
     branches:
       - master
     paths:
+      - '**/ci-node.yml'
       - 'nodejs.Dockerfile'
       - 'nodejs.entrypoint.sh'
   workflow_dispatch:
