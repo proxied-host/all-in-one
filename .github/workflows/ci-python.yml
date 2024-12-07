@@ -5,6 +5,7 @@ on:
     branches:
       - master
     paths:
+      - '**/ci-python.yml'
       - 'python.Dockerfile'
       - 'python.entrypoint.sh'
   workflow_dispatch:
