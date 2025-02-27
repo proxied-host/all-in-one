@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG TARGETARCH
 ARG NODE_VERSION
 ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
-ARG BUN_VERSION=v1.2.2
+ARG BUN_VERSION=v1.2.4
 
 RUN apt update && \
     apt install -y curl software-properties-common default-jre locales git unzip && \
