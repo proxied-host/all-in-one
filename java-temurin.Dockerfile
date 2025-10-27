@@ -11,7 +11,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN set -x && \
-    URL="https://api.adoptium.net/v3/binary/latest/${JAVA_VERSION}/ga/alpine-linux/$(if [ \"${TARGETARCH}\" = \"arm64\" ]; then echo \"aarch64\"; else echo \"x64\"; fi)/jdk/hotspot/normal/eclipse?project=jdk" && \
+    URL="https://api.adoptium.net/v3/binary/latest/${JAVA_VERSION}/ga/alpine-linux/$(if [ "${TARGETARCH}" = "arm64" ]; then echo aarch64; else echo x64; fi)/jdk/hotspot/normal/eclipse?project=jdk" && \
     echo "Downloading from: $URL" && \
     curl --retry 3 -Lfso /tmp/temurin.tar.gz "$URL" && \
     mkdir -p /opt/java/temurin && \
