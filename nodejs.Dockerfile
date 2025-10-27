@@ -10,8 +10,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN curl -fsSL https://bun.sh/install | bash
-RUN curl -fsSL https://get.pnpm.io/install.sh | bash
-RUN apk add --no-cache yarn
+RUN bun install -g pnpm yarn
 
 RUN adduser -D -h /home/container container
 
