@@ -6,7 +6,8 @@ on:
       - master
     paths:
       - '**/ci-java.yml'
-      - 'java.Dockerfile'
+      - 'java-graalvm.Dockerfile'
+      - 'java-temurin.Dockerfile'
       - 'java.entrypoint.sh'
   workflow_dispatch:
 
@@ -26,6 +27,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
+      - name: Set Dockerfile path
+        id: set_dockerfile
+        run: |
+          if [ ${{ matrix.java_version }} -lt 21 ]; then
+            echo "dockerfile=java-temurin.Dockerfile" >> $GITHUB_OUTPUT
+          else
+            echo "dockerfile=java-graalvm.Dockerfile" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3
 
@@ -43,7 +53,7 @@ jobs:
         with:
           build-args: JAVA_VERSION=${{ matrix.java_version }}
           context: .
-          file: java.Dockerfile
+          file: ${{ steps.set_dockerfile.outputs.dockerfile }}
           platforms: linux/amd64, linux/arm64
           push: false
           tags: djoh/all-in-one:java${{ matrix.java_version }}
