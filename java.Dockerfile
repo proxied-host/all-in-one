@@ -1,17 +1,24 @@
+ARG TARGETARCH
 ARG JAVA_VERSION
 
-FROM openjdk:${JAVA_VERSION}-bullseye
-ARG DEBIAN_FRONTEND=noninteractive
+FROM alpine:3.22
 
-RUN apt update && \
-    apt install -y curl software-properties-common locales git unzip && \
-    useradd -d /home/container -m container
+RUN apk update && \
+    apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang
 
-RUN locale-gen en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN apt install -y g++ build-essential ffmpeg
+RUN curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-$(if [ "${TARGETARCH}" = "arm64" ]; then echo "aarch64"; else echo "x64"; fi)_bin.tar.gz && \
+    mkdir -p /opt/java/graalvm && \
+    tar -xf /tmp/graalvm.tar.gz -C /opt/java/graalvm --strip-components=1 && \
+    rm /tmp/graalvm.tar.gz
+
+ENV JAVA_HOME /opt/java/graalvm
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
+
+RUN adduser -D -h /home/container container
 
 USER container
 ENV USER container

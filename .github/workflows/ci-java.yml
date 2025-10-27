@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java_version: [11, 17, 21, 22, 23, 24]
+        java_version: [11, 17, 21, 25]
     steps:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
@@ -45,7 +45,7 @@ jobs:
           context: .
           file: java.Dockerfile
           platforms: linux/amd64, linux/arm64
-          push: true
+          push: false
           tags: djoh/all-in-one:java${{ matrix.java_version }}
           cache-from: type=registry,ref=djoh/all-in-one:buildcache_java${{ matrix.java_version }}
           cache-to: type=registry,ref=djoh/all-in-one:buildcache_java${{ matrix.java_version }},mode=max

@@ -1,41 +1,19 @@
-FROM ubuntu:20.04@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214
-ARG DEBIAN_FRONTEND=noninteractive
-
-ARG TARGETARCH
 ARG NODE_VERSION
-ARG X_URL=https://deb.nodesource.com/setup_$NODE_VERSION.x
-ARG BUN_VERSION=v1.2.22
 
-RUN apt update && \
-    apt install -y curl software-properties-common default-jre locales git unzip && \
-    useradd -d /home/container -m container
+FROM node:${NODE_VERSION}-alpine
 
-RUN locale-gen en_US.UTF-8
+RUN apk update && \
+    apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang
+
+ENV LANGUAGE en_US:en
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN curl -sL $X_URL | bash - && \
-    apt install -y nodejs g++ build-essential ffmpeg
-RUN npm i -g pm2 pnpm
+RUN curl -fsSL https://bun.sh/install | bash
+RUN curl -fsSL https://get.pnpm.io/install.sh | bash
+RUN apk add --no-cache yarn
 
-# Install yarn
-RUN apt remove cmdtest
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt update && \
-    apt install yarn
-
-# Install bun
-RUN case ${TARGETARCH} in 'amd64') TARGET=linux-x64-baseline;; 'arm64') TARGET=linux-aarch64;; esac && \
-    echo "TARGETARCH=${TARGETARCH}" && \
-    echo "TARGET=$TARGET" && \
-    curl -fL -o bun.zip https://github.com/oven-sh/bun/releases/download/bun-${BUN_VERSION}/bun-$TARGET.zip && \
-    unzip bun.zip && \
-    mv bun-$TARGET/bun /usr/local/bin/bun && \
-    rm -r bun.zip bun-$TARGET
-
-# Lib dependencies for puppeteer
-RUN apt install -y libxdamage1 libgbm1
+RUN adduser -D -h /home/container container
 
 USER container
 ENV USER container

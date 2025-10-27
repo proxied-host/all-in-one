@@ -1,45 +1,17 @@
-FROM ubuntu:20.04@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214
-ARG DEBIAN_FRONTEND=noninteractive
-
 ARG PYTHON_VERSION
-ARG PYTHON_VERSION_SHORT
-ARG DOWNLOAD_URL=https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
 
-RUN apt update && \
-    apt install -y curl wget software-properties-common default-jre locales git && \
-    useradd -d /home/container -m container
+FROM python:${PYTHON_VERSION}-alpine
 
-# additional dependencies for python
-RUN apt update && \
-    apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev
+RUN apk update && \
+    apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang
 
-RUN locale-gen en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-# download and install python
-WORKDIR /tmp
-RUN curl -sLO $DOWNLOAD_URL && \
-    tar -xf Python-$PYTHON_VERSION.tgz
+RUN adduser -D -h /home/container container
 
-WORKDIR /tmp/Python-$PYTHON_VERSION
-RUN ./configure --enable-optimizations --enable-loadable-sqlite-extensions && \
-    make PROFILE_TASK="-m test.regrtest --pgo -j8" -j8 && \
-    make altinstall
-
-# update python alternatives
-RUN update-alternatives --install /usr/bin/python python /usr/local/bin/python$PYTHON_VERSION_SHORT 1 && \
-    update-alternatives --set python /usr/local/bin/python$PYTHON_VERSION_SHORT
-
-# install pip
-RUN python -m ensurepip --upgrade && \
-    python -m pip install --upgrade pip
-
-# update pip alternatives
-RUN update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip$PYTHON_VERSION_SHORT 1 && \
-    update-alternatives --set pip /usr/local/bin/pip$PYTHON_VERSION_SHORT
-
-ENV USER container
+USER container
 ENV USER container
 ENV HOME /home/container
 
