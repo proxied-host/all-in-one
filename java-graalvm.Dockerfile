@@ -10,7 +10,7 @@ ENV LANGUAGE en_US:en
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN curl --retry 3 -Lfso /tmp/graalvm.tar.gz https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-$(if [ "${TARGETARCH}" = "arm64" ]; then echo "aarch64"; else echo "x64"; fi)_bin.tar.gz && \
+RUN curl --retry 3 -Lfso /tmp/graalvm.tar.gz "https://download.oracle.com/graalvm/${JAVA_VERSION}/latest/graalvm-jdk-${JAVA_VERSION}_linux-$(if [ "${TARGETARCH}" = "arm64" ]; then echo "aarch64"; else echo "x64"; fi)_bin.tar.gz" && \
     mkdir -p /opt/java/graalvm && \
     tar -xf /tmp/graalvm.tar.gz -C /opt/java/graalvm --strip-components=1 && \
     rm /tmp/graalvm.tar.gz
