@@ -1,7 +1,7 @@
+FROM alpine:3.22
+
 ARG TARGETARCH
 ARG JAVA_VERSION
-
-FROM alpine:3.22
 
 RUN apk update && \
     apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang
