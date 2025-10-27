@@ -10,7 +10,9 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN curl -fsSL https://bun.sh/install | bash
-RUN bun install -g pnpm yarn
+ENV PATH="/root/.bun/bin:${PATH}"
+
+RUN bun add -g pnpm yarn
 
 RUN adduser -D -h /home/container container
 
