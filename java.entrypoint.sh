@@ -1,3 +1,4 @@
+#!/bin/bash
 sleep 1
 
 java -version
@@ -9,4 +10,4 @@ export PORT=$SERVER_PORT
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-${MODIFIED_STARTUP}
+exec ${MODIFIED_STARTUP}
