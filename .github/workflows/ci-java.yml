@@ -7,7 +7,7 @@ on:
     paths:
       - '**/ci-java.yml'
       - 'java-graalvm.Dockerfile'
-      - 'java-temurin.Dockerfile'
+      - 'java-bellsoft.Dockerfile'
       - 'java.entrypoint.sh'
   workflow_dispatch:
 
@@ -31,7 +31,7 @@ jobs:
         id: set_dockerfile
         run: |
           if [ ${{ matrix.java_version }} -lt 21 ]; then
-            echo "dockerfile=java-temurin.Dockerfile" >> $GITHUB_OUTPUT
+            echo "dockerfile=java-bellsoft.Dockerfile" >> $GITHUB_OUTPUT
           else
             echo "dockerfile=java-graalvm.Dockerfile" >> $GITHUB_OUTPUT
           fi
