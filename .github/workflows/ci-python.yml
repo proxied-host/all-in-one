@@ -53,7 +53,7 @@ jobs:
           context: .
           file: python.Dockerfile
           platforms: linux/amd64, linux/arm64
-          push: false
+          push: true
           tags: "djoh/all-in-one:python${{ steps.extract.outputs.result }}"
           cache-from: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}
           cache-to: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }},mode=max
