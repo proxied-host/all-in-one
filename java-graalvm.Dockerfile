@@ -1,10 +1,14 @@
-FROM alpine:3.22
+FROM debian:bookworm-slim
 
 ARG TARGETARCH
 ARG JAVA_VERSION
 
-RUN apk update && \
-    apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang gcompat
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl ca-certificates openssl git tar unzip bash ffmpeg gettext locales iproute2
+
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV LANGUAGE=en_US:en
 ENV LANG=en_US.UTF-8
@@ -18,7 +22,7 @@ RUN curl --retry 3 -Lfso /tmp/graalvm.tar.gz "https://download.oracle.com/graalv
 ENV JAVA_HOME=/opt/java/graalvm
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
-RUN adduser -D -h /home/container container
+RUN useradd -d /home/container -m container
 
 USER container
 ENV USER=container
