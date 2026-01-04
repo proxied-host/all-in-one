@@ -3,7 +3,7 @@ ARG PYTHON_VERSION
 FROM python:${PYTHON_VERSION}-alpine3.22
 
 RUN apk update && \
-    apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang
+    apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang gcompat
 
 ENV LANGUAGE=en_US:en
 ENV LANG=en_US.UTF-8
