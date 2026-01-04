@@ -1,6 +1,6 @@
-ARG PYTHON_VERSION
+ARG JAVA_VERSION
 
-FROM python:${PYTHON_VERSION}-alpine3.22
+FROM bellsoft/liberica-openjdk-alpine:${JAVA_VERSION}
 
 RUN apk update && \
     apk add --no-cache curl ca-certificates openssl git tar unzip bash ffmpeg gettext musl-locales musl-locales-lang
@@ -17,6 +17,6 @@ ENV HOME=/home/container
 
 WORKDIR /home/container
 
-COPY ./python.entrypoint.sh /entrypoint.sh
+COPY ./java.entrypoint.sh /entrypoint.sh
 
 CMD ["/bin/bash", "/entrypoint.sh"]
