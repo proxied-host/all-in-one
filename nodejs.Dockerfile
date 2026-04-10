@@ -10,7 +10,8 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
 ENV BUN_INSTALL=/usr/local
-RUN curl -fsSL https://bun.sh/install | bash
+ADD https://bun.sh/install /tmp/bun-install.sh
+RUN bash /tmp/bun-install.sh
 
 RUN bun add -g pnpm yarn
 
