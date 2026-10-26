@@ -13,7 +13,9 @@ ENV BUN_INSTALL=/usr/local
 ADD https://bun.sh/install /tmp/bun-install.sh
 RUN bash /tmp/bun-install.sh
 
-RUN bun add -g pnpm yarn
+RUN rm -f /usr/local/bin/yarn /usr/local/bin/yarnpkg && \
+    rm -rf /opt/yarn-v* && \
+    bun add -g pnpm yarn
 
 RUN adduser -D -h /home/container container
 
