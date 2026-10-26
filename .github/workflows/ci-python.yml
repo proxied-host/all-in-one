@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python_version: [3.10.22, 3.11.18, 3.12.16, 3.13.18, 3.14.10, 3.15.2]
+        python_version: [3.10, 3.11, 3.12.16, 3.13, 3.14, 3.15]
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -38,22 +38,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Extract first two elements
-        id: extract
-        run: |
-          str="${{ matrix.python_version }}"
-          IFS='.' read -ra arr <<< "$str"
-          result="${arr[0]}.${arr[1]}"
-          echo "result=$result" >> "$GITHUB_OUTPUT"
-
       - name: Build and push
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
-          build-args: PYTHON_VERSION=${{ steps.extract.outputs.result }}
+          build-args: PYTHON_VERSION=${{ matrix.python_version }}
           context: .
           file: python.Dockerfile
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: "djoh/all-in-one:python${{ steps.extract.outputs.result }}"
+          tags: "djoh/all-in-one:python${{ matrix.python_version }}"
           cache-from: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }}
           cache-to: type=registry,ref=djoh/all-in-one:buildcache_python${{ matrix.python_version }},mode=max
